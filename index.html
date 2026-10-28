@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--
+  Portfolio – Hunor Madaras
+  Plain HTML + CSS + a little vanilla JS. No frameworks, no build step.
+
+  Files:
+    index.html               – markup (this file)
+    assets/css/portfolio.css – all styles
+    assets/js/portfolio.js   – theme toggle, copy-email button, footer year
+
+  Note: this file has no Jekyll front matter on purpose, so GitHub Pages
+  serves it exactly as written instead of wrapping it in the theme layout.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hunor Madaras – Computer Science student</title>
+  <meta name="description" content="Hunor Madaras, Computer Science student at UMFST. Web and mobile projects built with React, Flutter and Firebase.">
+  <meta name="author" content="Hunor Madaras">
+
+  <!-- Browser UI color, one per theme -->
+  <meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)">
+
+  <!-- Basic Open Graph tags so the link looks decent when shared -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hunor Madaras – Computer Science student">
+  <meta property="og:description" content="Web and mobile projects built with React, Flutter and Firebase.">
+  <meta property="og:url" content="https://huni98.github.io/">
+
+  <!-- Favicon: a small accent-colored square, same as the logo mark -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23c2410c'/%3E%3C/svg%3E">
+
+  <!-- Fonts: Inter for text, JetBrains Mono for tags / code-like bits -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+
+  <!--
+    Apply a saved theme before the page is painted.
+    It has to be inline (and not deferred) or the page would flash
+    in the wrong theme for a split second.
+  -->
+  <script>
+    try {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+    } catch (e) { /* localStorage blocked – just use the OS setting */ }
+  </script>
+  <script src="assets/js/portfolio.js" defer></script>
+</head>
+
+<body>
+  <!-- Lets keyboard users jump past the navigation -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- SVG sprite: icons are defined once here and reused with <use> -->
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
+    <!-- GitHub mark (from GitHub Octicons, MIT license) -->
+    <symbol id="icon-github" viewBox="0 0 16 16">
+      <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="#top">
+        <span class="logo-mark" aria-hidden="true"></span>hunor madaras
+      </a>
+
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#projects">Projects</a></li>
+          <li><a class="site-nav__link" href="#skills">Skills</a></li>
+          <li><a class="site-nav__link" href="#contact">Contact</a></li>
+        </ul>
+        <!-- Hidden until JS loads, because it does nothing without JS -->
+        <button class="chip-btn" type="button" data-theme-toggle hidden>dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ Hero ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container">
+        <h1 class="hero__title" id="hero-title">Hi, I'm Hunor<span class="accent">.</span></h1>
+        <p class="hero__lead">A Computer Science student at UMFST building web and mobile apps.</p>
+        <p class="hero__text">
+          I'm in my 2nd year. Most of what I write is React, Flutter and C++.
+          Below are a few things I've built for university and on my own.
+        </p>
+        <div class="hero__actions">
+          <a class="btn" href="#projects">See projects</a>
+          <a class="btn btn--ghost" href="https://github.com/Huni98">
+            <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Projects ============ -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 class="section-title" id="projects-title">
+          <span class="section-title__num">01</span> Projects
+        </h2>
+
+        <!--
+          Each project is an <article> inside a list item.
+          To add a project: copy one <li> block and change the text, tags and link.
+          TODO: replace the GitHub links with the real repository URLs.
+        -->
+        <ul class="projects-grid">
+
+          <li>
+            <article class="card">
+              <div class="card__top">
+                <span class="card__index">01</span>
+                <a class="card__github" href="https://github.com/Huni98?tab=repositories" aria-label="React Weather App on GitHub">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                </a>
+              </div>
+              <h3 class="card__title">React Weather App</h3>
+              <p class="card__desc">
+                Search for a city and see the current weather and a 5-day forecast.
+                You can sign in and save favourite cities, which are stored in Firebase.
+              </p>
+              <ul class="tags" aria-label="Tech stack">
+                <li class="tag">React</li>
+                <li class="tag">Firebase</li>
+                <li class="tag">REST API</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article class="card">
+              <div class="card__top">
+                <span class="card__index">02</span>
+                <a class="card__github" href="https://github.com/Huni98?tab=repositories" aria-label="Trivia Battle Game on GitHub">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                </a>
+              </div>
+              <h3 class="card__title">Trivia Battle Game</h3>
+              <p class="card__desc">
+                A quiz game for two players. Both get the same question and a timer;
+                the fastest correct answer wins the round.
+              </p>
+              <ul class="tags" aria-label="Tech stack">
+                <li class="tag">JavaScript</li>
+                <li class="tag">HTML5</li>
+                <li class="tag">CSS</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article class="card">
+              <div class="card__top">
+                <span class="card__index">03</span>
+                <a class="card__github" href="https://github.com/Huni98?tab=repositories" aria-label="Flutter Comic Book Marketplace on GitHub">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+                </a>
+              </div>
+              <h3 class="card__title">Flutter Comic Book Marketplace</h3>
+              <p class="card__desc">
+                A mobile app for buying and selling comic books. Users post listings
+                with photos, search by title or series, and message sellers.
+              </p>
+              <ul class="tags" aria-label="Tech stack">
+                <li class="tag">Flutter</li>
+                <li class="tag">Dart</li>
+                <li class="tag">Firebase</li>
+              </ul>
+            </article>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ Skills ============ -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 class="section-title" id="skills-title">
+          <span class="section-title__num">02</span> Skills &amp; tools
+        </h2>
+        <p class="section-intro">What I use in class and in my own projects.</p>
+
+        <ul class="tags tags--large">
+          <li class="tag">React</li>
+          <li class="tag">HTML5</li>
+          <li class="tag">CSS</li>
+          <li class="tag">Flutter</li>
+          <li class="tag">C++</li>
+          <li class="tag">Firebase</li>
+          <li class="tag">Git</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ Footer / Contact ============ -->
+  <footer class="site-footer" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 class="section-title" id="contact-title">
+        <span class="section-title__num">03</span> Contact
+      </h2>
+      <p class="contact__text">Email is the easiest way to reach me.</p>
+
+      <p class="contact__email">
+        <a href="mailto:hunormadaras@yahoo.com">hunormadaras@yahoo.com</a>
+        <!-- Shown by JS only if the Clipboard API is available -->
+        <button class="chip-btn" type="button" data-copy="hunormadaras@yahoo.com" hidden>copy</button>
+        <!-- Screen readers hear "Email copied" through this live region -->
+        <span class="visually-hidden" aria-live="polite" data-copy-status></span>
+      </p>
+
+      <ul class="contact__links">
+        <li><a href="https://github.com/Huni98">GitHub <span aria-hidden="true">↗</span></a></li>
+        <!-- TODO: add LinkedIn profile URL -->
+        <li><a href="#">LinkedIn <span aria-hidden="true">↗</span></a></li>
+      </ul>
+
+      <div class="site-footer__meta">
+        <span>© <span data-year>2026</span> Hunor Madaras</span>
+        <span>Plain HTML &amp; CSS, hosted on GitHub Pages</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

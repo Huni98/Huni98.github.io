@@ -1,16 +1,65 @@
 <!-- _pages/lab1.html -->
 
 <style>
+    /* 1. Alap tábla beállítása és reszponzív méretezés (vw/vh alapú) */
+#sakktabla {
+    margin: 50px auto; /* Középre igazítás */
+    border: 4px solid #2c1a0e; /* Vastagabb, sötét keret */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Szép, mély árnyék a kreativitásért */
+    
+    /* Reszponzív méretezés: vmin (a vw és vh közül a kisebbik) biztosítja, hogy mindig négyzet maradjon */
+    width: 80vmin; 
+    height: 80vmin;
+    max-width: 600px;
+    max-height: 600px;
+    
+    background-color: #f0d9b5; /* A világos mezők alapértelmezett színe (klasszikus fa szín) */
+}
+
+/* 2. Cellák (mezők) alapbeállítása */
+#sakktabla td {
+    width: 12.5%; /* 100% / 8 oszlop */
+    height: 12.5%; /* 100% / 8 sor */
+    transition: all 0.2s ease-in-out; /* Finom animáció a hover állapothoz */
+    box-sizing: border-box;
+}
+
+/* 3. A sakktábla minta kialakítása HTML módosítás nélkül! */
+/* Sötét mezők kiválasztása: 
+   - Páratlan sorok páros cellái
+   - Páros sorok páratlan cellái */
+#sakktabla tr:nth-child(odd) td:nth-child(even),
+#sakktabla tr:nth-child(even) td:nth-child(odd) {
+    background-color: #b58863; /* Sötét mezők színe */
+}
+
+/* 4. Fókusz/Hover állapot (Pluszpontért) */
+#sakktabla td:hover {
+    background-color: #7fa650; /* Kijelölt mező színe (zöldes árnyalat) */
+    transform: scale(1.05); /* Kicsit "kiemelkedik" a cella */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6); /* Belső árnyék */
+    border-radius: 4px; /* Finoman lekerekített sarkok fókuszkor */
+    cursor: crosshair;
+}
+
+/* 5. Magas kontraszt mód (Pluszpontért) */
+/* Ha a felhasználó operációs rendszere magas kontrasztot kér, ez a szabály érvényesül */
+@media (prefers-contrast: more) {
     #sakktabla {
-        border-collapse: collapse;
+        border: 4px solid #000;
+        background-color: #fff; /* Tiszta fehér világos mezők */
     }
-    #sakktabla td {
-        width: 50px;
-        height: 50px;
-        border: 1px solid #ccc;
-        text-align: center;
-        vertical-align: middle;
+    
+    #sakktabla tr:nth-child(odd) td:nth-child(even),
+    #sakktabla tr:nth-child(even) td:nth-child(odd) {
+        background-color: #000; /* Tiszta fekete sötét mezők */
     }
+
+    #sakktabla td:hover {
+        background-color: #ffcc00; /* Nagyon erős sárga fókuszállapot */
+        border: 2px solid #000;
+    }
+}
 </style>
 
 <table id='sakktabla' cellspacing=0>
